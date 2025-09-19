@@ -3614,44 +3614,44 @@ var require_connection = __commonJS({
       log: () => {
       }
     });
-    var Trace;
-    (function(Trace2) {
-      Trace2[Trace2["Off"] = 0] = "Off";
-      Trace2[Trace2["Messages"] = 1] = "Messages";
-      Trace2[Trace2["Verbose"] = 2] = "Verbose";
-    })(Trace = exports2.Trace || (exports2.Trace = {}));
-    (function(Trace2) {
+    var Trace2;
+    (function(Trace3) {
+      Trace3[Trace3["Off"] = 0] = "Off";
+      Trace3[Trace3["Messages"] = 1] = "Messages";
+      Trace3[Trace3["Verbose"] = 2] = "Verbose";
+    })(Trace2 = exports2.Trace || (exports2.Trace = {}));
+    (function(Trace3) {
       function fromString(value) {
         if (!Is.string(value)) {
-          return Trace2.Off;
+          return Trace3.Off;
         }
         value = value.toLowerCase();
         switch (value) {
           case "off":
-            return Trace2.Off;
+            return Trace3.Off;
           case "messages":
-            return Trace2.Messages;
+            return Trace3.Messages;
           case "verbose":
-            return Trace2.Verbose;
+            return Trace3.Verbose;
           default:
-            return Trace2.Off;
+            return Trace3.Off;
         }
       }
-      Trace2.fromString = fromString;
+      Trace3.fromString = fromString;
       function toString(value) {
         switch (value) {
-          case Trace2.Off:
+          case Trace3.Off:
             return "off";
-          case Trace2.Messages:
+          case Trace3.Messages:
             return "messages";
-          case Trace2.Verbose:
+          case Trace3.Verbose:
             return "verbose";
           default:
             return "off";
         }
       }
-      Trace2.toString = toString;
-    })(Trace = exports2.Trace || (exports2.Trace = {}));
+      Trace3.toString = toString;
+    })(Trace2 = exports2.Trace || (exports2.Trace = {}));
     var TraceFormat;
     (function(TraceFormat2) {
       TraceFormat2["Text"] = "text";
@@ -3768,7 +3768,7 @@ var require_connection = __commonJS({
       let messageQueue = new linkedMap_1.LinkedMap();
       let responsePromises = /* @__PURE__ */ Object.create(null);
       let requestTokens = /* @__PURE__ */ Object.create(null);
-      let trace = Trace.Off;
+      let trace = Trace2.Off;
       let traceFormat = TraceFormat.Text;
       let tracer;
       let state = ConnectionState.New;
@@ -4108,12 +4108,12 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function traceSendingRequest(message) {
-        if (trace === Trace.Off || !tracer) {
+        if (trace === Trace2.Off || !tracer) {
           return;
         }
         if (traceFormat === TraceFormat.Text) {
           let data = void 0;
-          if (trace === Trace.Verbose && message.params) {
+          if (trace === Trace2.Verbose && message.params) {
             data = `Params: ${JSON.stringify(message.params, null, 4)}
 
 `;
@@ -4124,12 +4124,12 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function traceSendingNotification(message) {
-        if (trace === Trace.Off || !tracer) {
+        if (trace === Trace2.Off || !tracer) {
           return;
         }
         if (traceFormat === TraceFormat.Text) {
           let data = void 0;
-          if (trace === Trace.Verbose) {
+          if (trace === Trace2.Verbose) {
             if (message.params) {
               data = `Params: ${JSON.stringify(message.params, null, 4)}
 
@@ -4144,12 +4144,12 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function traceSendingResponse(message, method, startTime) {
-        if (trace === Trace.Off || !tracer) {
+        if (trace === Trace2.Off || !tracer) {
           return;
         }
         if (traceFormat === TraceFormat.Text) {
           let data = void 0;
-          if (trace === Trace.Verbose) {
+          if (trace === Trace2.Verbose) {
             if (message.error && message.error.data) {
               data = `Error data: ${JSON.stringify(message.error.data, null, 4)}
 
@@ -4170,12 +4170,12 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function traceReceivedRequest(message) {
-        if (trace === Trace.Off || !tracer) {
+        if (trace === Trace2.Off || !tracer) {
           return;
         }
         if (traceFormat === TraceFormat.Text) {
           let data = void 0;
-          if (trace === Trace.Verbose && message.params) {
+          if (trace === Trace2.Verbose && message.params) {
             data = `Params: ${JSON.stringify(message.params, null, 4)}
 
 `;
@@ -4186,12 +4186,12 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function traceReceivedNotification(message) {
-        if (trace === Trace.Off || !tracer || message.method === LogTraceNotification.type.method) {
+        if (trace === Trace2.Off || !tracer || message.method === LogTraceNotification.type.method) {
           return;
         }
         if (traceFormat === TraceFormat.Text) {
           let data = void 0;
-          if (trace === Trace.Verbose) {
+          if (trace === Trace2.Verbose) {
             if (message.params) {
               data = `Params: ${JSON.stringify(message.params, null, 4)}
 
@@ -4206,12 +4206,12 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function traceReceivedResponse(message, responsePromise) {
-        if (trace === Trace.Off || !tracer) {
+        if (trace === Trace2.Off || !tracer) {
           return;
         }
         if (traceFormat === TraceFormat.Text) {
           let data = void 0;
-          if (trace === Trace.Verbose) {
+          if (trace === Trace2.Verbose) {
             if (message.error && message.error.data) {
               data = `Error data: ${JSON.stringify(message.error.data, null, 4)}
 
@@ -4237,7 +4237,7 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function logLSPMessage(type, message) {
-        if (!tracer || trace === Trace.Off) {
+        if (!tracer || trace === Trace2.Off) {
           return;
         }
         const lspMessage = {
@@ -4534,13 +4534,13 @@ ${JSON.stringify(message, null, 4)}`);
           }
           trace = _value;
           traceFormat = _traceFormat;
-          if (trace === Trace.Off) {
+          if (trace === Trace2.Off) {
             tracer = void 0;
           } else {
             tracer = _tracer;
           }
           if (_sendNotification && !isClosed() && !isDisposed()) {
-            connection.sendNotification(SetTraceNotification.type, { value: Trace.toString(_value) });
+            connection.sendNotification(SetTraceNotification.type, { value: Trace2.toString(_value) });
           }
         },
         onError: errorEmitter.event,
@@ -4581,10 +4581,10 @@ ${JSON.stringify(message, null, 4)}`);
         }
       };
       connection.onNotification(LogTraceNotification.type, (params) => {
-        if (trace === Trace.Off || !tracer) {
+        if (trace === Trace2.Off || !tracer) {
           return;
         }
-        tracer.log(params.message, trace === Trace.Verbose ? params.verbose : void 0);
+        tracer.log(params.message, trace === Trace2.Verbose ? params.verbose : void 0);
       });
       connection.onNotification(ProgressNotification.type, (params) => {
         const handler = progressHandlers.get(params.token);
@@ -14284,6 +14284,7 @@ module.exports = __toCommonJS(extension_exports);
 var path = __toESM(require("path"));
 var import_vscode = require("vscode");
 var import_node = __toESM(require_node3());
+var import_node2 = __toESM(require_node());
 var client;
 function activate(context) {
   console.log("Activating NeuroScript Language Client...");
@@ -14300,6 +14301,7 @@ function activate(context) {
   };
   const clientOptions = {
     documentSelector: [{ scheme: "file", language: "neuroscript" }],
+    // THE FIX IS HERE: The 'trace' property is removed from this object.
     synchronize: {
       // fileEvents: workspace.createFileSystemWatcher('**/.clientrc') // Optional: if server needs to watch other files
     },
@@ -14314,6 +14316,7 @@ function activate(context) {
     serverOptions,
     clientOptions
   );
+  client.trace = import_node2.Trace.Verbose;
   console.log("Starting NeuroScript Language Client...");
   context.subscriptions.push(client.start());
   client.onReady().then(() => {

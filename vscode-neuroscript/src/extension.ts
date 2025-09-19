@@ -7,6 +7,7 @@ import {
     ServerOptions,
     TransportKind
 } from 'vscode-languageclient/node';
+import { Trace } from 'vscode-jsonrpc/node'; // THE FIX IS HERE: Import Trace
 
 let client: LanguageClient;
 
@@ -30,6 +31,7 @@ export function activate(context: ExtensionContext) {
     // Client options: defines how the client behaves
     const clientOptions: LanguageClientOptions = {
         documentSelector: [{ scheme: 'file', language: 'neuroscript' }],
+        // THE FIX IS HERE: The 'trace' property is removed from this object.
         synchronize: {
             // fileEvents: workspace.createFileSystemWatcher('**/.clientrc') // Optional: if server needs to watch other files
         },
@@ -44,6 +46,9 @@ export function activate(context: ExtensionContext) {
         serverOptions,
         clientOptions
     );
+
+    // THE FIX IS HERE: Set the trace level on the client instance directly.
+    client.trace = Trace.Verbose;
 
     // Start the client.
     // The start() method returns a Disposable that should be pushed to context.subscriptions.
